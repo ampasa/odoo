@@ -24,6 +24,7 @@ class CfdiDownloadData(models.Model):
     total = fields.Char(string="Total", required=True)
     conceptos = fields.Text(string="Conceptos")
     invoice_id = fields.Many2one(comodel_name='account.move',string="Factura")    
+    invoice_payment_state = fields.Selection(related='invoice_id.payment_state')
     company_id = fields.Many2one(comodel_name="res.company",string="Compañia",default=lambda self: self.env.company, copy=True)
 
     def view_invoice(self):
