@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>  
+    <record model="ir.ui.view" id="quality_rejected_reason_tree">
+      <field name="name">quality.rejected.reason.tree</field>
+      <field name="model">quality.rejected.reason</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+            <field name="name"/>           
+        </tree>
+      </field>
+    </record>
+      
+    <record id="quality_rejected_reason_action" model="ir.actions.act_window">
+      <field name="name">Motivos de rechazo</field>
+      <field name="res_model">quality.rejected.reason</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu -->    
+    <menuitem id="quality_rejected_reason_menu" 
+    name="Motivos de rechazo" 
+    parent="quality_control.menu_quality_configuration" 
+    action="quality_rejected_reason_action" 
+    sequence="500"/>    
+</odoo>

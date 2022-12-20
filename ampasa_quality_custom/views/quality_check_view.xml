@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="quality_check_form_view_inherit" model="ir.ui.view">
+    <field name="name">quality.check.form.view.inherit</field>
+    <field name="model">quality.check</field>
+    <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="purchase_id" options="{'no_open':True, 'no_create':True}"/>
+        <field name="rejected_date" />
+        <field name="rejected_reason_id" options="{'no_open':True, 'no_create':True}"/>        
+        <field name="rejected_status_id" options="{'no_open':True, 'no_create':True}"/>        
+      </xpath>
+    </field>
+  </record>
+  <record id="quality_check_tree_view_inherit" model="ir.ui.view">
+    <field name="name">quality.check.tree.view.inherit</field>
+    <field name="model">quality.check</field>
+    <field name="inherit_id" ref="quality_control.quality_check_view_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//tree" position="replace">
+        <tree default_order="id desc" sample="1" decoration-info="quality_state == 'none'">
+                <field name="name" decoration-bf="1" string="Folio"/>
+                <field name="purchase_id" />
+                <field name="rejected_date" />
+                <field name="partner_id" string="Proveedor"/>
+                <field name="qty_tested" string="Cantidad rechazada"/>
+                <field name="uom_id" string="Unidad"/>
+                <field name="rejected_reason_id" />               
+                <!-- <field name="measure_on" optional="show"/> -->
+                <field name="product_id" optional="show"/>
+                <!-- <field name="lot_id" /> -->
+                <field name="lot_name" string="Lote"/>
+                <field name="picking_id" optional="hide" />
+                <!-- <field name="control_date" string="Checked Date" optional="show"/> -->
+                <!-- <field name="user_id" string="Checked By" optional="show" widget="many2one_avatar_user"/> -->
+                <!-- <field name="point_id" optional="hide"/> -->
+                <!-- <field name="team_id" optional="show"/> -->
+                <field name="quality_state" optional="show" widget="badge" decoration-success="quality_state == 'pass'" decoration-info="quality_state == 'none'" decoration-danger="quality_state == 'fail'"/>
+                <field name="rejected_status_id" />
+                <!-- <field name="company_id" groups="base.main_company" optional="show" /> -->
+            </tree>
+         
+      </xpath>
+    </field>
+  </record>
+</odoo>
