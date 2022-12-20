@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="quality_check_wizard_form_view" model="ir.ui.view">
+    <field name="name">quality.check.wizard.form.view</field>
+    <field name="model">quality.check.wizard</field>
+    <field name="inherit_id" ref="quality_control.view_quality_check_wizard"/>
+    <field name="arch" type="xml">
+      
+      <xpath expr="//label[@for='qty_tested']" position="attributes">
+        <attribute name="string">Cantidad rechazada</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='lot_name']" position="after">
+        <field name="partner_id" string="Proveedor"/>     
+        <field name="purchase_id" options="{'no_open':True, 'no_create':True}"/>
+        <field name="rejected_date" required="1"/>
+        <field name="rejected_reason_id" options="{'no_open':True, 'no_create':True}" required="1"/>          
+        <field name="rejected_status_id" options="{'no_open':True, 'no_create':True}" required="1"/>          
+      </xpath>    
+    
+    </field>
+  </record>
+</odoo>

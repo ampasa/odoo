@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo> 
+    <report
+        id="quality_check_xlsx_report_id"
+        model="quality.check"
+        string="Rechazos (XLSX)"
+        report_type="xlsx"
+        name="ampasa_quality_custom.quality_check_xlsx_report"
+        file="quality_check"
+        attachment_use="False" 
+    />   
+</odoo>
