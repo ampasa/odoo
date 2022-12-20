@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>  
+    <record model="ir.ui.view" id="quality_status_tree">
+      <field name="name">quality.status.tree</field>
+      <field name="model">quality.status</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+            <field name="name"/>           
+        </tree>
+      </field>
+    </record>
+      
+    <record id="quality_status_action" model="ir.actions.act_window">
+      <field name="name">Estatus de rechazo</field>
+      <field name="res_model">quality.status</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu -->    
+    <menuitem id="quality_status_menu" 
+    name="Estatus de rechazo" 
+    parent="quality_control.menu_quality_configuration" 
+    action="quality_status_action" 
+    sequence="600"/>    
+</odoo>
