@@ -27,7 +27,8 @@
             <field name="tipo"/> 
             <field name="total"/>
             <field name="conceptos" optional="hide"/>   
-            <field name="invoice_id" optional="hide"/>
+            <field name="invoice_id"/>
+            <field name="invoice_payment_state"/>
             <field name="company_id" invisible="1"/>
             <button name="create_invoice" type="object" class="fa fa-file" title='Crear factura' attrs="{'invisible':[('invoice_id','!=',False)]}" />
             <button name="view_invoice" type="object" class="fa fa-file-text-o" title='Ver factura' attrs="{'invisible':[('invoice_id','=',False)]}" />            
