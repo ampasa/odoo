@@ -114,6 +114,8 @@ class CfdiDownloadRequest(models.Model):
                             'rs_emisor': xml.get('rs_emisor'),
                             'fecha': xml.get('Fecha'),
                             'tipo': xml.get('TipoDeComprobante'),
+                            'serie': xml.get('Serie'),
+                            'folio': xml.get('Folio'),
                             'total': xml.get('Total'),
                             'conceptos': xml.get('Conceptos')
                         }
