@@ -25,6 +25,8 @@
             <field name="rs_emisor"/> 
             <field name="fecha"/> 
             <field name="tipo"/> 
+            <field name="serie"/> 
+            <field name="folio"/> 
             <field name="total"/>
             <field name="conceptos" optional="hide"/>   
             <field name="invoice_id"/>
