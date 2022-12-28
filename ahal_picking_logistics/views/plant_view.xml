@@ -45,7 +45,7 @@
         </field>
     </record>
 
-    <menuitem id="menu_fletes"
+    <menuitem id="menu_planta"
               name="Planta Ampasa"
               parent="stock.menu_stock_config_settings"
               action="action_plant_ampasa_tree"
