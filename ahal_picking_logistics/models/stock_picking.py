@@ -87,6 +87,24 @@ class StockPicking(models.Model):
     def get_cost(self):
         for rec in self:
             rec.cost_cargo = rec.diff_weigth_ampasa_cargo * rec.price_cargo
+
+
+    #FUNCIÓN ACTUALIZAR CAMPOS AL VALIDAR LA ENTRADA
+    def button_validate(self):
+        res = super(StockPicking, self).button_validate()
+        #stp_obj = self.env['stock.production.lot']
+        for rec in self.move_ids_without_package:
+            move_line_ids = self.env['stock.move.line'].search([('move_id','=',rec.id)])
+            for line in move_line_ids:
+                if line.lot_id:
+                    #lot_id = stp_obj.search([('name','=',rec.lot_name)],limit='1')
+                    #if rec.lot_id:
+                    line.lot_id.kd_cargo = line.kd_cargo
+                    line.lot_id.flete_id = line.flete_id.id
+                    line.lot_id.fecha_entrada = line.fecha_entrada
+        return res
+
+
      
 
 #CREATE NEW MODEL FOR PLANT AMPASA
@@ -104,3 +122,29 @@ class StockMoveLine(models.Model):
     kd_cargo = fields.Date(string="Killing date")
     flete_id = fields.Many2one('flete.rel',string="Flete")
     fecha_entrada = fields.Date(string="Fecha entrada")
+    #lot_id_value = fields.Many2one('stock.production.lot', string="Lot/SNumber")
+    
+
+    #FUNCTION 
+    @api.onchange('lot_id')
+    def get_values(self):
+        for rec in self:
+            if rec.lot_id:
+                rec.kd_cargo = rec.lot_id.kd_cargo
+                rec.flete_id = rec.lot_id.flete_id
+                rec.fecha_entrada = rec.lot_id.fecha_entrada
+
+    custom_field = fields.Char(string='Custom Field')
+
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    def action_show_details(self):
+        res = super(StockMove,self).action_show_details()
+        for line in self.move_line_ids:
+            if line.lot_id:
+                line.kd_cargo = line.lot_id.kd_cargo
+                line.flete_id = line.lot_id.flete_id
+                line.kd_cargo = line.lot_id.fecha_entrada
+        return res

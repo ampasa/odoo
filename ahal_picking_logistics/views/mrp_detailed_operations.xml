@@ -9,6 +9,7 @@
                 <field name="kd_cargo"/>
                 <field name="flete_id"/>
                 <field name="fecha_entrada"/>
+                <!--<field name="custom_field"/>-->
             </xpath>
         </field>
     </record>

@@ -13,6 +13,7 @@
             <xpath expr="//field[@name='product_uom_id']" position="after">
                     <field name="flete_id"/>
                     <field name="fecha_entrada"/>
+                    <!--<field name="custom_field_value"/>-->
             </xpath>
             
         </field>

@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#                 @author AHAL
+#                 @author AHAL CONSULTORES
 #
 ##############################################################################
 
 {
     'name': 'AHAL Picking Logistics',
-    'version': '1.1',
+    'version': '1.2',
     'description': ''' Picking logistics form
     ''',
     'category': 'Inventory',
     'author': 'AHAL Consultores',
     'website': '',
     'depends': [
-        'stock','mail',
+        'stock','mail','purchase_stock'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -23,6 +23,7 @@
         'views/logistics_report_tree_view.xml',
         'views/stock_quant_view.xml',
         'views/mrp_detailed_operations.xml',
+        'views/stock_production_lot.xml',
     ],
     'images': [],
     'application': False,
