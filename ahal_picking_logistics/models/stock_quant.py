@@ -16,7 +16,6 @@ class StockQuant(models.Model):
     #    return super(StockQuant, self).create(vals)
 
 
-
     """def create(self,vals):
         vals = super(StockQuant, self).create(vals)
         vals.update({'custom_field_value': vals['custom_field']})
