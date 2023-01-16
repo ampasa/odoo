@@ -191,7 +191,20 @@ class StockMove(models.Model):
                 default_kd_cargo = self.picking_id.kd_cargo,
                 default_flete_id = self.picking_id.flete_id.id,
             ),
-        }  
+        }
+    
+    def action_assign_serial(self):
+        """ Opens a wizard to assign SN's name on each move lines.
+        """
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("stock.act_assign_serial_numbers")
+        action['context'] = {
+            'default_product_id': self.product_id.id,
+            'default_move_id': self.id,
+            'default_kd_cargo' : self.picking_id.kd_cargo,
+            'default_flete_id' : self.picking_id.flete_id.id,
+        }
+        return action
 
 
    
