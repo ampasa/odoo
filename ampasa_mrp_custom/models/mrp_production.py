@@ -14,7 +14,9 @@ class MrpProduction(models.Model):
                 quantity_carcass += move.quantity_done if move.product_id.carcass_product else 0
             #
             rec.performance = rec.qty_producing / quantity_carcass if quantity_carcass > 0 else 0
+            rec.consumed = quantity_carcass
         return True
 
     performance = fields.Float(string="Rendimiento", compute="_get_performance")
+    consumed = fields.Float(string="Consumido", compute="_get_performance")
     
