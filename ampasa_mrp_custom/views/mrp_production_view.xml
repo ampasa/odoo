@@ -17,7 +17,11 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
         <field name="arch" type="xml">
+            
             <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="consumed"></field>                
+            </xpath>
+            <xpath expr="//field[@name='consumed']" position="after">
                 <field name="performance"></field>                
             </xpath>
         </field>
