@@ -15,8 +15,27 @@ class FleteRel(models.Model):
     flete_date_disp = fields.Date(string="Fecha Disponibilidad")
     flete_asigna = fields.Char(string="Lugar de asignación")
 
+    #NEW FIELD CONTIENE
+    contiene =  fields.Selection(
+        selection=[('combos', 'Combos'),
+                   ('basura', 'Basura'), 
+                   ('material_empaque', 'Material de empaque')],
+        string=('Contiene')
+    )
+
+    no_disponible = fields.Boolean(string="Establecer No disponible", help="Seleccionar para establecer el flete en el estado de no disponible")
+
+    #FUNCTION ONCHANGE FOR THE STATUS BASED ON THE FIELD NO_DISPONIBLE
+    @api.onchange('no_disponible')
+    def set_no_disponible(self):
+        for rec in self:
+            if rec.no_disponible == True:
+                rec.flete_status = 'no_disponible'
+
+
     flete_status =  fields.Selection(
-        selection=[('disponible', 'Disponible'), 
+        selection=[('no_disponible', 'No disponible'),
+                    ('disponible', 'Disponible'), 
                    ('viaje_mp', 'Viaje Materia Prima'),
                    ('viaje_pt', 'Viaje Producto Terminado')],
         string=('Estatus de la unidad'),default="disponible", track_visibility='always'
