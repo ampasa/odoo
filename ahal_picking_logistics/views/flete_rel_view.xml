@@ -26,6 +26,7 @@
                         <field name="flete_place_out"/>
                         <field name="flete_date_out"/>
                         <field name="flete_obs"/>
+                        <field name="picking_id"/>
                         <field name="contiene"/>
                         <field name="no_disponible" attrs="{'invisible':[('contiene','not in',('combos','basura','material_empaque'))]}"/>
                         <field name="restart_state" attrs="{'invisible':[('flete_status','=','disponible')]}"/>
