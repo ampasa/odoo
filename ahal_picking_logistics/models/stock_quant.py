@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, api, fields, _
+from datetime import date
+
 
 class StockQuant(models.Model):
     _inherit = 'stock.quant'
@@ -9,6 +11,18 @@ class StockQuant(models.Model):
     flete_id = fields.Many2one('flete.rel',string="Flete", related="lot_id.flete_id")
     fecha_entrada = fields.Date(string="Fecha entrada", related="lot_id.fecha_entrada")
     custom_field_value = fields.Char(string='Custom Field Value')
+    dias_restantes = fields.Integer(string="Días de anaquel", compute="days_between")
+
+
+    def days_between(self): 
+        today = date.today()
+        for rec in self:
+            if rec.kd_cargo:
+                someday = rec.kd_cargo
+                diff = someday - today
+                rec.dias_restantes = diff.days
+            else:
+                rec.dias_restantes = 0
 
     #def create(self, vals):
     #    #Set the value of the custom field
@@ -24,5 +38,5 @@ class StockQuant(models.Model):
     @api.model
     def _get_inventory_fields_write(self):    
         fields = super(StockQuant, self)._get_inventory_fields_write()     
-        return fields + ['kd_cargo', 'flete_id', 'fecha_entrada']
+        return fields + ['kd_cargo', 'flete_id', 'fecha_entrada','dias_restantes']
 
