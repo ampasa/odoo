@@ -8,6 +8,7 @@
 
             <xpath expr="//field[@name='lot_id']" position="after">
                 <field name="kd_cargo"/>
+                <field name="dias_restantes" string="Vida de anaquel"/>
             </xpath>
 
             <xpath expr="//field[@name='product_uom_id']" position="after">
