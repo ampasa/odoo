@@ -9,8 +9,19 @@
                 <field name="kd_cargo"/>
                 <field name="flete_id"/>
                 <field name="fecha_entrada"/>
-            </xpath>
-            
+                <field name="temperature"/>
+            </xpath>            
+        </field>
+    </record>
+
+    <record id="ahal_picking_logistics_stock_production_lot_tree" model="ir.ui.view">
+        <field name="name">stock.production.lot.tree.inherit</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">                
+                <field name="temperature"/>
+            </xpath>            
         </field>
     </record>
 </odoo>
