@@ -8,3 +8,4 @@ class StockProductionLot(models.Model):
     kd_cargo = fields.Date(string="Killing date")
     flete_id = fields.Many2one('flete.rel',string="Flete")
     fecha_entrada = fields.Date(string="Fecha entrada")
+    temperature = fields.Float(string="Temperatura")
