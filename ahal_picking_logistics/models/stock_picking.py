@@ -141,7 +141,7 @@ class StockMoveLine(models.Model):
     def get_values_qty(self):
         for rec in self:
             if rec.qty_done_pass:
-                rec.qty_done = rec.qty
+                rec.qty_done = rec.qty_done_pass
  
     #FUNCTION 
     @api.onchange('lot_id')
