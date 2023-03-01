@@ -133,8 +133,15 @@ class StockMoveLine(models.Model):
     kd_cargo = fields.Date(string="Killing date")
     flete_id = fields.Many2one('flete.rel',string="Flete")
     fecha_entrada = fields.Date(string="Fecha entrada", default=fields.Date.today)
+    qty_done_pass = fields.Float(string="Cantidad hecha USA", related="picking_id.net_weigth_usa_cargo")
     #lot_id_value = fields.Many2one('stock.production.lot', string="Lot/SNumber")
     
+    #FUNCTION 
+    @api.onchange('qty_done_pass')
+    def get_values_qty(self):
+        for rec in self:
+            if rec.qty_done_pass:
+                rec.qty_done = rec.qty
  
     #FUNCTION 
     @api.onchange('lot_id')
