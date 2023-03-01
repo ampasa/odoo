@@ -10,8 +10,12 @@
                 <field name="kd_cargo"/>
                 <field name="flete_id"/>
                 <field name="fecha_entrada"/>
+                <field name="qty_done_pass"/>
                 <!--<field name="custom_field"/>-->
             </xpath>
+            <!--<xpath expr="//field[@name='qty_done']" position="attributes">
+                <attribute name="default">qty_done_pass</attribute> 
+            </xpath>-->
         </field>
     </record>
 </odoo>
