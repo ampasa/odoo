@@ -28,7 +28,7 @@
                         <field name="flete_obs"/>
                         <field name="picking_id"/>
                         <field name="contiene"/>
-                        <field name="no_disponible" attrs="{'invisible':[('contiene','not in',('combos','basura','material_empaque'))]}"/>
+                        <field name="no_disponible" attrs="{'invisible':[('contiene','not in',('basura','carcasa','combos','equipo_fu','falla_mecanica','hielo','material_empaque','pasta','producto_pendiente','sal',))]}"/>
                         <field name="restart_state" attrs="{'invisible':[('flete_status','=','disponible')]}"/>
                     </group>
                 </group>
