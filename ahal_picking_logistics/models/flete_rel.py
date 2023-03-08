@@ -17,11 +17,13 @@ class FleteRel(models.Model):
 
     #NEW FIELD CONTIENE
     contiene =  fields.Selection(
-        selection=[('basura', 'Basura'),
+        selection=[('archivo_muerto', 'Archivo muerto'),
+                   ('basura', 'Basura'),
                    ('carcasa', 'Carcasa'),
                    ('combos', 'Combos'),
                    ('equipo_fu', 'Equipo fuera de uso'),
                    ('falla_mecanica', 'Falla mecánica'),
+                   ('herramientas_varias', 'Herramientas varias'),
                    ('hielo', 'Hielo'),
                    ('material_empaque', 'Material de empaque'),
                    ('pasta', 'Pasta'),
