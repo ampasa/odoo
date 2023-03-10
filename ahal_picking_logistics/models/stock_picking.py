@@ -45,7 +45,7 @@ class StockPicking(models.Model):
     weigth_in_cargo = fields.Float(string="WEIGTH INVOICED")
     diff_weigth_ampasa_cargo = fields.Float(string="DIFERENCE WEIGTH AMPASA", compute="get_diff_weigth")
     combos_cargo = fields.Float(string="COMBOS")
-    price_cargo = fields.Float(string="PRICE")
+    price_cargo = fields.Float(string="PRICE", digits=(10,4))
     cost_cargo = fields.Float(string="COST", compute="get_cost")
     obs_cargo = fields.Text(string="OBSERVATIONS")
 
