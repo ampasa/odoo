@@ -27,7 +27,10 @@
                         <field name="flete_date_out"/>
                         <field name="flete_obs"/>
                         <field name="picking_id"/>
+                        <field name="lot_number"/>
+                        <field name="temperature"/>
                         <field name="contiene"/>
+                        <field name="disponible_patio"/>
                         <field name="no_disponible" attrs="{'invisible':[('contiene','not in',('archivo_muerto','basura','carcasa','combos','equipo_fu','falla_mecanica','herramientas_varias','hielo','material_empaque','pasta','producto_pendiente','sal',))]}"/>
                         <field name="restart_state" attrs="{'invisible':[('flete_status','=','disponible')]}"/>
                     </group>
@@ -43,6 +46,7 @@
     </record>
     <record id="view_flete_rel_tree" model="ir.ui.view">
         <field name="name">flete.rel.tree</field>
+        <field name="priority" eval="10"/>
         <field name="model">flete.rel</field>
         <field name="arch" type="xml">
             <tree string="Fletes">

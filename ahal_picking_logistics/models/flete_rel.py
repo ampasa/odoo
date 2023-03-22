@@ -15,6 +15,18 @@ class FleteRel(models.Model):
     flete_date_disp = fields.Date(string="Fecha Disponibilidad")
     flete_asigna = fields.Char(string="Lugar de asignación")
 
+    #ADD FIELD LOT NUMBER RELATED FROM PICKING ID, TEMPERATURE FIELD AND FIELD "ESTA EN PATIO"
+    disponible_patio = fields.Boolean(string="Esta en patio", help="Seleccionar para establecer si el flete se encuentra en patio")
+    lot_number = fields.Char(string='Lot Number', related="picking_id.lot_number")
+    temperature = fields.Float(string="Temperatura")
+
+    @api.onchange('disponible_patio')
+    def _onchange_my_boolean(self):
+        for rec in self:
+            if not rec.disponible_patio:
+                # set the value of my_integer to 0 when my_boolean is false
+                rec.temperature = 0
+
     #NEW FIELD CONTIENE
     contiene =  fields.Selection(
         selection=[('archivo_muerto', 'Archivo muerto'),

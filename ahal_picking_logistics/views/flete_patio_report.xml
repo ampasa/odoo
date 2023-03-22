@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="flete_patio_tree_view" model="ir.ui.view">
+        <field name="name">flete.rel.tree.patio</field>
+        <field name="priority" eval="50"/>
+        <field name="model">flete.rel</field>
+        <field name="arch" type="xml">
+            <tree string="Fletes en patio" editable="bottom" create="0" >
+                <field name="name"/>
+                <field name="temperature"/>
+                <field name="lot_number"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_flete_rel_patio_search" model="ir.ui.view">
+        <field name="name">flete.rel.search.patio</field>
+        <field name="model">flete.rel</field>
+        <field name="arch" type="xml">
+            <search string="Buscar flete">
+                <field name="name"/>
+                <field name="temperature"/>
+                <field name="lot_number"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_flete_rel_patio_tree" model="ir.actions.act_window">
+        <field name="name">Fletes en patio</field>
+        <field name="res_model">flete.rel</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="flete_patio_tree_view"/>
+        <field name="domain">[
+            ('disponible_patio', '=', True)]
+        </field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            No hay fletes disponibles en patio
+          </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="child_action_window_tree_patio">
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="flete_patio_tree_view" />
+      <field name="act_window_id" ref="action_flete_rel_patio_tree" />
+    </record>
+
+    <menuitem id="flete_rel_root_patio"
+              name="Flete en patio"
+              parent="stock.menu_stock_root"
+              action="action_flete_rel_patio_tree"
+              sequence="99"/>
+
+</odoo>
