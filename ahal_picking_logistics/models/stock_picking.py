@@ -27,8 +27,6 @@ class StockPicking(models.Model):
                    ('sanderson', 'Sanderson'), 
                    ('south', 'Southeastern'), 
                    ('carlos_valle', 'Carlos del Valle'),
-                   ('food_suppliers', 'Food Suppliers'),
-                   ('s_border_warehouse', 'S. Border Warehouse'),
                    ],
         string=('Brokers'),
     )
@@ -71,10 +69,9 @@ class StockPicking(models.Model):
     #FUNCTION TO WRITE THE FLETE AS DISPONIBLE WHEN THE STATE IS DONE
     def _compute_state(self):
         res = super(StockPicking, self)._compute_state()
-        for rec in self:
-            if rec.state == 'done':
-                rec.flete_id.write({'flete_status': 'disponible'})
-                return res
+        if self.state == 'done':
+            self.flete_id.write({'flete_status': 'disponible'})
+            return res
 
 
 
@@ -117,6 +114,18 @@ class StockPicking(models.Model):
                 line.flete_id = line.picking_id.flete_id
                 line.kd_cargo = line.picking_id.fecha_entrada
         return res
+
+    #ADD LOT NUMBER FROM MOVE LINE IDS
+    lot_number = fields.Char(string='Lot Number', compute='_compute_lot_number')
+
+    def _compute_lot_number(self):
+        for line in self.move_line_ids:
+            if line.lot_name:
+                self.lot_number = line.lot_name
+            else:
+                self.lot_number = ''
+
+
 
 
      

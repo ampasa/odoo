@@ -6,7 +6,7 @@
 
 {
     'name': 'AHAL Picking Logistics',
-    'version': '1.2',
+    'version': '1.3',
     'description': ''' Picking logistics form
     ''',
     'category': 'Inventory',
@@ -24,6 +24,7 @@
         'views/stock_quant_view.xml',
         'views/mrp_detailed_operations.xml',
         'views/stock_production_lot.xml',
+        'views/flete_patio_report.xml'
     ],
     'images': [],
     'application': False,
