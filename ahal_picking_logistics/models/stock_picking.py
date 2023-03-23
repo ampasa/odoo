@@ -27,6 +27,8 @@ class StockPicking(models.Model):
                    ('sanderson', 'Sanderson'), 
                    ('south', 'Southeastern'), 
                    ('carlos_valle', 'Carlos del Valle'),
+                   ('food_suppliers', 'Food Suppliers'),
+                   ('s_border_warehouse', 'S. Border Warehouse'),
                    ],
         string=('Brokers'),
     )
