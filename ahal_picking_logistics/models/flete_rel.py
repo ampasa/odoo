@@ -18,6 +18,7 @@ class FleteRel(models.Model):
     #ADD FIELD LOT NUMBER RELATED FROM PICKING ID, TEMPERATURE FIELD AND FIELD "ESTA EN PATIO"
     disponible_patio = fields.Boolean(string="Esta en patio", help="Seleccionar para establecer si el flete se encuentra en patio")
     lot_number = fields.Char(string='Lot Number', related="picking_id.lot_number")
+    proveedor_name = fields.Char(string="Proveedor", related="picking_id.partner_id.name")
     temperature = fields.Float(string="Temperatura")
 
     @api.onchange('disponible_patio')
