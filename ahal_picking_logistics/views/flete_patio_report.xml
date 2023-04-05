@@ -9,6 +9,7 @@
             <tree string="Fletes en patio" editable="bottom" create="0" >
                 <field name="name"/>
                 <field name="temperature"/>
+                <field name="picking_id" string="Transferencia"/>
                 <field name="lot_number"/>
             </tree>
         </field>
