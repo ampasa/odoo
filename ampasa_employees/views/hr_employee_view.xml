@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ampasa_employees_hr_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.list.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='job_title']" position="before">
+                <div class="address_format">
+                    <field name="nombres" style="width:25%" placeholder="Nombres"/>
+                    <field name="apellido_paterno" style="width:25%" placeholder="Apellido paterno" />
+                    <field name="apellido_materno" style="width:25%" placeholder="Apellido materno"/>
+                </div>
+            </xpath>
+
+
+            <xpath expr="//notebook/page[@name='personal_information']" position="after">
+                    <page name="informacion_ampasa" string="Información Ampasa">
+                        <group>
+                            <group string="Información Básica">
+                                <field name="apellido_paterno"/>
+                                <field name="apellido_materno"/>
+                                <field name="curp"/>
+                                <field name="numero_ine"/>
+                                <field name="estado_nacimiento"/>
+                            </group>
+                            <group string="Información Nominal">
+                                <field name="numero_ss"/>
+                                <field name="factor_descuento_infonavit"/>
+                                <field name="turno_empleados"/>
+                                <field name="inicio_perido"/>
+                                <field name="fin_periodo"/>
+                                <field name="fecha_ingreso"/>
+                                <field name="semana_ingreso"/>
+                                <field name="tipo_empleado"/>
+                                <field name="banco_empleado"/>
+                                <field name="clabe_interbancaria"/>
+                                <field name="numero_tarjeta"/>
+                            </group>
+                            <group string="Información Personal">
+                                <field name="nombre_padre"/>
+                                <field name="nombre_madre"/>
+                                <field name="hijo_1"/>
+                                <field name="fecha_nac_hijo1"/>
+                                <field name="hijo_2"/>
+                                <field name="fecha_nac_hijo2"/>
+                                <field name="hijo_3"/>
+                                <field name="fecha_nac_hijo3"/>
+                                <field name="hijo_4"/>
+                                <field name="fecha_nac_hijo4"/>
+                                <field name="nombre_esposo"/>
+                                <field name="nombre_beneficiario"/>
+                                <field name="telefono_beneficiario"/>
+                                <field name="notas_bajas"/>
+                                <field name="fecha_baja"/>
+                                <field name="semana_baja"/>
+                                <field name="fecha_segundo_ingreso"/>
+                                <field name="fecha_primer_ingreso"/>
+                                <field name="enfermedad_cronica"/>
+                                <field name="alergia"/>
+                                <field name="covid"/>
+                                <field name="sindicalizado"/>
+                                <field name="tipo_sangre"/>
+                                <field name="leer_escribir"/>
+                                <field name="observaciones"/>
+                            </group>
+                        </group>
+                    </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
