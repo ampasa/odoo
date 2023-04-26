@@ -6,21 +6,22 @@
         <field name="inherit_id" ref="hr.view_employee_form" />
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='job_title']" position="before">
+            <!--<xpath expr="//field[@name='job_title']" position="before">
                 <div class="address_format">
                     <field name="nombres" style="width:25%" placeholder="Nombres"/>
                     <field name="apellido_paterno" style="width:25%" placeholder="Apellido paterno" />
                     <field name="apellido_materno" style="width:25%" placeholder="Apellido materno"/>
                 </div>
-            </xpath>
+            </xpath>-->
 
 
             <xpath expr="//notebook/page[@name='personal_information']" position="after">
                     <page name="informacion_ampasa" string="Información Ampasa">
                         <group>
                             <group string="Información Básica">
-                                <field name="apellido_paterno"/>
-                                <field name="apellido_materno"/>
+                                <field name="codigo_empleado"/>
+                                <!--<field name="apellido_paterno"/>
+                                <field name="apellido_materno"/>-->
                                 <field name="curp"/>
                                 <field name="numero_ine"/>
                                 <field name="estado_nacimiento"/>

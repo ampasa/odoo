@@ -7,14 +7,15 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     #Información basica
-    nombres = fields.Char(string='Nombres')
-    apellido_paterno = fields.Char(string='Apellido paterno')
-    apellido_materno = fields.Char(string='Apellido materno')
+    codigo_empleado = fields.Integer(string="Código de empleado")
+    #nombres = fields.Char(string='Nombres')
+    #apellido_paterno = fields.Char(string='Apellido paterno')
+    #apellido_materno = fields.Char(string='Apellido materno')
 
-    @api.onchange('nombres', 'apellido_paterno', 'apellido_materno')
-    def _compute_name(self):
-        for employee in self:
-            employee.name = ' '.join(filter(None, [employee.nombres, employee.apellido_paterno, employee.apellido_materno]))
+    #@api.onchange('nombres', 'apellido_paterno', 'apellido_materno')
+    #def _compute_name(self):
+    #    for employee in self:
+    #        employee.name = ' '.join(filter(None, [employee.nombres, employee.apellido_paterno, employee.apellido_materno]))
 
     curp = fields.Char(string="CURP")
 
