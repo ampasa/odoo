@@ -16,7 +16,7 @@
         'hr',
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hr_employee_view.xml',
     ],
     'images': [],

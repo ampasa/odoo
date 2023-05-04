@@ -20,24 +20,26 @@ class HrEmployee(models.Model):
     curp = fields.Char(string="CURP")
 
     #Revisar length del CURP
-    @api.constrains('curp')
+    """@api.constrains('curp')
     def _check_curp_length(self):
         for record in self:
             if len(record.curp or '') != 18:
-                raise ValidationError('El campo CURP debe tener 18 digitos')
+                raise ValidationError('El campo CURP debe tener 18 digitos')"""
 
     numero_ine = fields.Char(string="Número de INE")
     estado_nacimiento = fields.Many2one('res.country.state', string="Estado de nacimiento")
 
     #Información nominal
-    numero_ss = fields.Integer(string="Número de seguro social")
+    numero_ss = fields.Char(string="Número de seguro social")
     factor_descuento_infonavit = fields.Integer(string="Factor de descuento Infonavit")
     #area_asignada = fields.Many2one('area.asignada')
     turno_empleados = fields.Selection(
         selection=[('01', 'Nocturno'),
                    ('02', 'Matutino'),
-                   ('03', 'Vespertino')],
-        string='My Field',
+                   ('03', 'Vespertino'),
+                   ('04', 'Rotativo'),
+                   ('05', 'Mixto')],
+        string='Turno empleados',
     )
 
     inicio_perido = fields.Date()
@@ -46,8 +48,19 @@ class HrEmployee(models.Model):
     tipo_empleado = fields.Selection(
         selection=[('01', 'Confianza'),
                    ('02', 'Sindicalizado'),
-                   ('03', 'Por ley')],
+                   ('03', 'Por ley'),
+                   ('04', 'Operativo'),
+                   ],
         string='Tipo empleado',
+    )
+
+
+    estatus_empleado = fields.Selection(
+        selection=[('01', 'ALTA'),
+                   ('02', 'BAJA'),
+                   ('03', 'REINGRESO'),
+                   ],
+        string='Estatus empleado',
     )
     
     banco_empleado = fields.Many2one('res.bank', string="Banco")
@@ -76,20 +89,13 @@ class HrEmployee(models.Model):
     alergia = fields.Char(string="Alergia")
     covid = fields.Char(string="Covid")
     sindicalizado = fields.Boolean(string="Sindicalizado")
-    tipo_sangre = fields.Selection([
-        ('A+', 'A+'),
-        ('A-', 'A-'),
-        ('B+', 'B+'),
-        ('B-', 'B-'),
-        ('AB+', 'AB+'),
-        ('AB-', 'AB-'),
-        ('O+', 'O+'),
-        ('O-', 'O-'),
-    ], string='Tipo de sangre')
+
+    tipo_sangre = fields.Char(string="Tipo de sangre")
+
     
     leer_escribir = fields.Selection(
-        selection=[('1', 'Sí'),
-                   ('2', 'No')],
+        selection=[('1', 'SI'),
+                   ('2', 'NO')],
         string='Leer/Escribir',
     )
 
@@ -97,7 +103,35 @@ class HrEmployee(models.Model):
 
 
     #Campos con observaciones
-    semana_ingreso = fields.Integer(string="Semana de ingreso")
-    fecha_ingreso = fields.Integer(string="Fecha de ingreso")
+    semana_ingreso = fields.Char(string="Semana de ingreso")
+    fecha_ingreso = fields.Date(string="Fecha de ingreso")
     clabe_interbancaria = fields.Integer(string="Clabe interbancaria")
 
+    baja_ids = fields.One2many('hr.employee.baja', 'employee_id', string='Historial de Bajas')
+
+    #CAMPOS DE CORRECCIONES PARA INFORMACIÓN
+    años_empresa = fields.Integer(string="Años en la empresa")
+    area_trabajo = fields.Many2one('hr.area.trabajo', string='Área de trabajo')
+
+    #CAMPOS PARA DIRECCIÓN
+    street = fields.Char(string='Calle y no.')
+    street2 = fields.Char(string='Colonia')
+    city = fields.Char(string='Ciudad')
+    state_id = fields.Many2one('res.country.state', string='Estado')
+    zip_code = fields.Char(string='Código Postal')
+    grado_academico = fields.Char(string="Grado académico")
+    rfc_empleado = fields.Char(string="RFC empleado")
+    edad_empleado = fields.Integer(string="Edad empleado")
+
+
+class HrEmployeeBaja(models.Model):
+    _name = 'hr.employee.baja'
+
+    notas = fields.Text(string='Notas de Bajas')
+    fecha_baja = fields.Date(string='Fecha de Baja')
+    semana_baja = fields.Char(string='Semana de Baja')
+    employee_id = fields.Many2one('hr.employee', string='Empleado')
+
+class HrAreaTrabajo(models.Model):
+    _name = 'hr.area.trabajo'
+    name = fields.Char(string="Área de trabajo")

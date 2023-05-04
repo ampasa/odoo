@@ -13,7 +13,9 @@
                     <field name="apellido_materno" style="width:25%" placeholder="Apellido materno"/>
                 </div>
             </xpath>-->
-
+            <xpath expr="//field[@name='department_id']" position="after">
+                <field name="area_trabajo"/>
+            </xpath>
 
             <xpath expr="//notebook/page[@name='personal_information']" position="after">
                     <page name="informacion_ampasa" string="Información Ampasa">
@@ -25,13 +27,17 @@
                                 <field name="curp"/>
                                 <field name="numero_ine"/>
                                 <field name="estado_nacimiento"/>
+                                <field name="rfc_empleado"/>
+                                <field name="edad_empleado"/>
+                                <field name="grado_academico"/>
                             </group>
                             <group string="Información Nominal">
+                                <field name="estatus_empleado"/>
                                 <field name="numero_ss"/>
-                                <field name="factor_descuento_infonavit"/>
+                                <!--<field name="factor_descuento_infonavit"/>-->
                                 <field name="turno_empleados"/>
-                                <field name="inicio_perido"/>
-                                <field name="fin_periodo"/>
+                                <!--<field name="inicio_perido"/>
+                                <field name="fin_periodo"/>-->
                                 <field name="fecha_ingreso"/>
                                 <field name="semana_ingreso"/>
                                 <field name="tipo_empleado"/>
@@ -39,7 +45,7 @@
                                 <field name="clabe_interbancaria"/>
                                 <field name="numero_tarjeta"/>
                             </group>
-                            <group string="Información Personal">
+                            <group string="Información familiar">
                                 <field name="nombre_padre"/>
                                 <field name="nombre_madre"/>
                                 <field name="hijo_1"/>
@@ -53,11 +59,21 @@
                                 <field name="nombre_esposo"/>
                                 <field name="nombre_beneficiario"/>
                                 <field name="telefono_beneficiario"/>
+                            </group>
+                            <group string="Dirección">
+                                <field name="street"/>
+                                <field name="street2"/>
+                                <field name="city"/>
+                                <field name="state_id"/>
+                                <field name="zip_code"/>
+                            </group>
+                            <group string="Información de ingreso y médica">
                                 <field name="notas_bajas"/>
                                 <field name="fecha_baja"/>
                                 <field name="semana_baja"/>
                                 <field name="fecha_segundo_ingreso"/>
                                 <field name="fecha_primer_ingreso"/>
+                                <field name="años_empresa"/>
                                 <field name="enfermedad_cronica"/>
                                 <field name="alergia"/>
                                 <field name="covid"/>
@@ -65,6 +81,15 @@
                                 <field name="tipo_sangre"/>
                                 <field name="leer_escribir"/>
                                 <field name="observaciones"/>
+                            </group>
+                            <group string="Historial de Bajas" attrs="{'invisible': [('baja_ids', '=', False)]}">
+                                <field name="baja_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="notas"/>
+                                        <field name="fecha_baja"/>
+                                        <field name="semana_baja"/>
+                                    </tree>
+                                </field>
                             </group>
                         </group>
                     </page>
