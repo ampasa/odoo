@@ -27,6 +27,8 @@ class StockPicking(models.Model):
                    ('sanderson', 'Sanderson'), 
                    ('south', 'Southeastern'), 
                    ('carlos_valle', 'Carlos del Valle'),
+                   ('food_suppliers', 'Food Suppliers'),
+                   ('s_border_warehouse', 'S. Border Warehouse'),
                    ],
         string=('Brokers'),
     )
@@ -69,9 +71,10 @@ class StockPicking(models.Model):
     #FUNCTION TO WRITE THE FLETE AS DISPONIBLE WHEN THE STATE IS DONE
     def _compute_state(self):
         res = super(StockPicking, self)._compute_state()
-        if self.state == 'done':
-            self.flete_id.write({'flete_status': 'disponible'})
-            return res
+        for rec in self:
+            if rec.state == 'done':
+                rec.flete_id.write({'flete_status': 'disponible'})
+                return res
 
 
 
