@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+        <!-- Vista de árbol -->
+        <record id="view_prenomina_tree" model="ir.ui.view">
+            <field name="name">ampasa.prenomina.tree</field>
+            <field name="model">ampasa.prenomina</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="1" edit="1" delete="1">
+                    <!-- Campos del modelo aquí -->
+                    <field name="codigo_empleado" width="200px;"/>
+                    <field name="start_date" width="200px;"/>
+                    <field name="end_date" width="200px;"/>
+                    <field name="no_semana" width="200px;"/>
+                    <field name="gender" width="200px;"/>
+                    <field name="nombre_empleado" width="400px;"/>
+                    <field name="salario_diario" width="200px;"/>
+                    <field name="puesto" width="200px;"/>
+                    <field name="departamento" width="200px;"/>
+                    <field name="supervisor" width="200px;"/>
+                    <field name="turno_empleados" width="200px;"/>
+                    <field name="sindicalizado" width="200px;"/>
+                    <field name="faltas" width="200px;"/>
+                    <field name="permiso_sin_goce_sueldo" width="200px;"/>
+                    <field name="incapacidad" width="200px;"/>
+                    <field name="vacaciones" width="200px;"/>
+                    <field name="horas_semanal" width="200px;"/>
+                    <field name="horas_semanales_trabajadas" width="200px;"/>
+                    <field name="prim_dom" width="200px;"/>
+                    <field name="descanso_trabajado" width="200px;"/>
+                    <field name="punt_y_assist" width="200px;"/>
+                    <field name="cubiertas_en_num" width="200px;"/>
+                    <field name="t_extra_doble" width="200px;"/>
+                    <field name="t_extra_doble_importe" width="200px;"/>
+                    <field name="t_extra_triple" width="200px;"/>
+                    <field name="t_extra_triple_importe" width="200px;"/>
+                    <field name="puntualidad_asistencia" width="200px;"/>
+                    <field name="cubiertas_en_dinero" width="200px;"/>
+                    <field name="premios_eficiencia" width="200px;"/>
+                    <field name="ayuda_transporte" width="200px;"/>
+                    <field name="gratificacion_fija" width="200px;"/>
+                    <field name="gratificacion_cumpleanios" width="200px;"/>
+                    <field name="gratificacion_eventual" width="200px;"/>
+                    <field name="combos_paleados" width="200px;"/>
+                    <field name="total_gratificacion" width="200px;"/>
+                    <field name="prestamos" width="200px;"/>
+                    <field name="deduccion_general" width="200px;"/>
+                    <field name="descuentos_adicionales" width="200px;"/>
+                    <field name="total_deduccion" width="200px;"/>
+                    <field name="observaciones_deducciones" width="200px;"/>
+                    <field name="observaciones" width="200px;"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Acción asociada a la vista de árbol -->
+        <record id="action_prenomina_tree" model="ir.actions.act_window">
+            <field name="name">Prenomina</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ampasa.prenomina</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_prenomina_tree"/>
+            <field name="context">{"group_by": "no_semana"}</field>
+        </record>
+
+        <!-- Menú item -->
+        <menuitem id="menu_empleados_prenomina" name="Prenomina" parent="hr.menu_hr_root" sequence="10"/>
+        <menuitem id="menu_empleados_prenomina_tree" name="Prenomina" parent="menu_empleados_prenomina" action="action_prenomina_tree"/>
+
+        
+    </data>
+</odoo>
