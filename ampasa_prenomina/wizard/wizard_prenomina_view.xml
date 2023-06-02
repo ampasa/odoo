@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Modelo del wizard -->
+        <record id="model_wizard_prenomina" model="ir.model">
+            <field name="name">Wizard Prenomina</field>
+            <field name="model">wizard.prenomina</field>
+        </record>
+
+        <!-- Vista del wizard -->
+        <record id="view_wizard_prenomina_form" model="ir.ui.view">
+            <field name="name">wizard.prenomina.form</field>
+            <field name="model">wizard.prenomina</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Prenomina" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="start_date" class="oe_inline">Fecha de inicio:</label>
+                            <field name="start_date" required="True" class="oe_inline"/>
+                            <label for="end_date" class="oe_inline">Fecha de fin:</label>
+                            <field name="end_date" class="oe_inline"/>
+                        </div>
+                    </sheet>
+                    <footer>
+                        <button string="Generar Prenomina" name="generate_prenomina" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción del wizard -->
+        <record id="action_wizard_prenomina" model="ir.actions.act_window">
+            <field name="name">Wizard Prenomina</field>
+            <field name="res_model">wizard.prenomina</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_prenomina_form"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_wizard_prenomina"/>
+        </record>
+
+        <!-- Menú item -->
+        <menuitem id="menu_wizard_prenomina" name="Generar Prenomina" parent="menu_empleados_prenomina" action="action_wizard_prenomina"/>
+
+    </data>
+</odoo>
