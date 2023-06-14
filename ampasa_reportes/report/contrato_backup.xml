@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_employee_report_paperformat" model="report.paperformat">
+        <field name="name">HR Employee Report Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="hr_employee_report_contrato_empleado" model="ir.actions.report">
+        <field name="name">Contrato empleado</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ampasa_reportes.report_contrato_empleado</field>
+        <field name="report_file">ampasa_reportes.report_contrato_empleado</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ampasa_reportes.hr_employee_report_paperformat"/>
+
+    </record>
+
+    <template id="report_contrato_empleado">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+
+                <style>
+                    .custom-h4{
+                        font-size:18px;
+                        text-align:center;
+                        font-weigth:bolder;
+                    }
+                    .custom-h6{
+                        text-align:center;
+                        font-weigth:200;
+
+                    }
+
+                </style>
+            
+                    <div class="oe_structure">
+                        <div class="container" style="text-align:justify;">
+                            <!-- Contenido del informe -->
+                            
+                            <h4 class="custom-h4">CONTRATO DE TRABAJO POR TIEMPO DETERMINADO</h4>
+                            
+
+                        En Nuevo Laredo Tamaulipas , el día <span t-esc="datetime.datetime.now().strftime('%d de %B de %Y')" /> comparece por una parte el apoderado Abastecedora de
+                        Materias Primas Agroindustrial S.A. de C.V. El C.P.Ricardo Garcia Lozano, mexicano , con domicilio social en calle El
+                        Nogal # 214 Colonia Granjas Económicas en la Cd. Nuevo Laredo Tamaulipas, a quien se le llama en este contrato PATRON,
+                        y por la parte el (la) C. <span t-field="o.name"/> quien tiene nacionalidad <span t-if="o.country_id.code == 'MX'">Mexicana</span> <span t-else="o.country_id.name" /> de
+                        quien cuenta con domicilio en la en la Cd. <span t-field="o.city"/>, <span t-field="o.state_id"/>
+                        estado civil: <span t-field="o.marital"/> Registro Fed. de Contribuyentes: <span t-field="o.rfc_empleado"/>
+                        quien cuenta con Numero de afiliacion en el IMSS <span t-field="o.numero_ss"/> ,quien se denominara
+                        TRABAJADOR , por nuestros propios derechos hacemos constar que hemos celebrado un contrato de trabajo al tenor de
+                        las siguientes: 
+
+                        <br/>
+                        <br/>
+
+                        <h6 class="custom-h6">CLAUSULAS:</h6>
+
+                        PRIMERA.- El trabajador se obliga a presentar bajo la dirección dependencia del patrón sus servicios personales consistentes
+                        en cubrir la vacante de: <span t-field="o.job_id.name"/> que desempeñara para la empresa: Abastecedora de Materias
+                        Primas Agroindustrial S.A. de C.V, esto por un volumen de trabajo extraordinario.
+
+                        <br/>
+                        <br/>
+
+                        SEGUNDA.- Ambas partes convienen en que este contrato tienen su origen en las siguientes causas: El desempeño laboral
+                        con responsabilidad y respeto mutuo entre ambas partes.Por tal razón su duración será de 30 Días Naturales o la terminación
+                        de proyecto en prueba para el que fue contratado.
+
+                        <br/>
+                        <br/>
+
+                        TERCERA.-La jornada de trabajo sera en el turno: <span t-field="o.turno_empleados"/> Misma que podra cambiar con previo aviso al trabajador,
+                        según las necesidades de la empresa.
+
+                        <br/>
+                        <br/>
+
+                        CUARTA.- El patrón se obliga a pagar al trabajador por los trabajos ejecutados, el siguiente salario diario: <!--<span t-field="o.salario_diario"/>-->
+                        asi como todas las prestaciones de ley; El pago se hará en moneda nacional, al terminar su jornada de cada Miércoles de cada
+                        semana. Y se liquidara al mismo tiempo los salarios ordinarios y extraordinarios que haya devengado el trabajador , quien de
+                        no hacer reclamación alguna al efectuarse al pago, se entenderá que esta conforme con la liquidación recibida , al terminar la
+                        relación laboral se finiquitara con las prestaciones de ley de manera proporcional.
+
+                        <br/>
+                        <br/>
+
+                        QUINTA.- El trabajador disfrutara de descanso un día de cada semana percibiendo salario. Si trabajara menos de los seis días
+                        de la semana, el pago del día de descanso se hará proporcionalmente, de acuerdo con la reglamentación respectiva. En caso de
+                        que durante el periodo hubiere algún descanso obligatorio, también lo disfrutara: percibiendo salario.
+
+                        <br/>
+                        <br/>
+
+                        SEXTA.- El trabajador está obligado a someterse a un reconocimiento médico para comprobar que no tiene una incapacidad ó
+                        padece alguna enfermedad contagiosa o incurable,al tiempo de su ingreso o durante su trabajo al ser requerido por el patrón.
+                        Y para consistencia firmamos de conformidad los interesados ante testigos, previa lectura.
+
+                        <div style="text-align: center; margin-top: 40px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    PATRÓN
+                                    <br/>
+                                    ______________________________________<br/>
+                                    C.P. Ricardo Garcia Lozano
+                                </div>
+                                <div class="col-6">
+                                    TRABAJADOR
+                                    <br/>
+                                    ______________________________________<br/>
+                                    <span t-field="o.name"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            TESTIGOS
+                        </div>
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    ______________________________________<br/>
+                                    C.P. Gregorio Serna Ramirez
+                                </div>
+                                <div class="col-6">
+                                    ______________________________________<br/>
+                                    Laura Cristina Caballero Trejo
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</odoo>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_ampasa_basic_paperformat" model="report.paperformat">
+        <field name="name">Basic Report Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="hr_employee_report_control_documentos" model="ir.actions.report">
+        <field name="name">Control de documentos</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ampasa_reportes.report_control_documentos</field>
+        <field name="report_file">ampasa_reportes.report_control_documentos</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ampasa_reportes.report_ampasa_basic_paperformat"/>
+
+    </record>
+
+    <template id="report_control_documentos">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="oe_structure" style="text-align: justify;">
+                        <style>
+                        .cell {
+                            border: 1px solid black;
+                            padding: 2px;
+                            font-weight:normal;
+                        }
+                        .texto-titulo {
+                        text-align: center;
+                        background-color:#D8EBFF;
+                        width:auto;
+                        margin-lefT:0px;
+                        margin-right:0px;
+                        }
+
+                        .texto-subtitulo {
+                        font-weight: normal;
+                        text-align: center;
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        width:100%;
+                        margin-left:0px;
+                        margin-right:0px;
+                        border 1px solid black;
+                        }
+
+                        .texto-bold-centrado {
+                        text-align: center;
+                        font-weight:bold;
+                        }
+
+                        .texto-normal{
+                        font-weight:normal;
+                        text-align:center;
+                        }
+
+                        .div-format{
+                            margin-bottom:10px;
+                            margin-top:10px;
+                            font-weight:normal;
+                        }
+                        </style>
+
+                        <div class="texto-titulo" style="border-top:2px solid black;border-left:2px solid black; border-right:2px solid black;">
+                        ABASTECEDORA DE MATERIAS PRIMAS AGROINDUSTRIAL SA DE CV
+                        </div>
+
+
+                        <div class="container" style="position:relative;border: 2px solid black;">
+                            <!-- Contenido del informe -->
+                            <div class="row texto-subtitulo">
+                                <div style="width: 50%;border:1px solid black;">
+                                    CONTROL DE DOCUMENTOS CHECK LIST
+                                </div>
+                                <div style="width: 15%;border:1px solid black;">
+                                    CODIGO COL
+                                </div>
+                                <div style="width: 35%;border:1px solid black;">
+                                    <span t-field="o.codigo_empleado"/>
+                                </div>
+                            </div>
+
+                            <table style="width: 100%;margin-top:0px;margin-bottom:20px;">
+                                <!--<tr>
+                                    <td class="cell">DOCUMENTOS CHECK LIST</td>
+                                    <td class="cell">CODIGO COL.</td>
+                                    <td class="cell">00862</td>
+                                </tr>-->
+
+                                <t t-set="nombres" t-value="o.name.split()"/>
+                                <t t-set="apellido_paterno" t-value="nombres[0] if len(nombres) >= 1 else ''"/>
+                                <t t-set="apellido_materno" t-value="nombres[1] if len(nombres) >= 2 else ''"/>
+                                <t t-set="nombres_completos" t-value="nombres[2:] if len(nombres) >= 3 else []"/>
+
+
+
+                                <tr>
+                                    <td class="cell" style="width:25%;">APELLIDO PATERNO:</td>
+                                    <td class="cell texto-normal" style="width:50%;">
+                                        <span t-esc="apellido_paterno"/>
+                                    </td>
+                                    <td class="cell" style="width:25%;" rowspan="9"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">APELLIDO MATERNO:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-esc="apellido_materno"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">NOMBRE:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-esc="str(nombres_completos).replace('[', '').replace(']', '').replace(',', '').replace(&quot;'&quot;, &quot;&quot;)" t-if="nombres_completos"/>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">PUESTO:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.job_id.name"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">FECHA DE INGRESO:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.fecha_ingreso"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell">DEPARTAMENTO:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.department_id.name"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">NSS:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.numero_ss"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">CURP:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.curp"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell">TELEFONO:</td>
+                                    <td class="cell texto-normal">
+                                        <span t-field="o.mobile_phone"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Resto de las filas de la tabla -->
+                            </table>
+
+                            <p class="texto-bold-centrado">DOCUMENTOS</p>
+
+                            <div class="container">
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    CONSTANCIA DE PRESENTACION DE MOVIMIENTOS AFILIATORIOS
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    NOTIFICACION DE ALTA
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    ACTA DE NACIMIENTO
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    COMPROBANTE DE DOMICILIO VIGENTE NO MAYOR A 3 MESES
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    COMPROBANTE DE IMSS
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    COMPROBANTE DE ULTIMO GRADO DE ESTUDIOS
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    IDENTIFICACION OFICIAL INE IFE
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    CURP
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    RFC
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    2 CARTAS DE RECOMENDACIÓN LABORAL
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    CURRICULO / SOLICITUD
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    COMPROBANTE DE INFONAVIT (SI CUENTA CON CREDITO)
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    CONSTANCIA DE NO ANTECEDENTES PENALES
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    COMPROBANTE DE APERTURA DE CUENTA SANTANDER
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    CONTRATO
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row div-format">
+                                    <div style="width: 80%;">
+                                    REGLAMENTO INTERNO FIRMADO
+                                    </div>
+                                    <div style="width: 20%;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:75px;height:25px;border:2px solid black;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <br/>
+
+                                <div class="row div-format">
+                                    <div style="width: 20%;">
+                                    OTROS
+                                    </div>
+                                    <div style="width: 50%;">
+                                    _____________________________________________________________
+                                    </div>
+                                    <div style="width:30%;text-align:center;">
+                                        <img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading"/>
+                                    </div>
+                                </div>
+
+                                <!--<div class="row div-format">
+                                    <div style="width: 25%;">
+                                    </div>
+                                    <div style="width: 50%;">
+                                    </div>
+                                    <div style="width:25%;">
+                                    </div>
+                                </div>-->
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
