@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_employee_etiquetas_empleado" model="ir.actions.report">
+        <field name="name">Etiquetas empleado</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ampasa_reportes.etiquetas_empleado</field>
+        <field name="report_file">ampasa_reportes.etiquetas_empleado</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ampasa_reportes.report_ampasa_basic_paperformat"/>
+
+    </record>
+
+    <template id="etiquetas_empleado">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <!--PERMITE IMPRIMIR MULTIPLES REGISTROS EN UNA SOLA HOJA-->
+                <t t-foreach="docs" t-as="o">
+                    <div class="oe_structure" style="text-align: justify;">
+                        <div class="container">
+
+                            <style>
+                            
+                            .my-table {
+                            width: 100%;
+                            border: 2px solid black;
+                            border-collapse: collapse;
+                            margin-top:10px;
+                            margin-bottom:10px;
+                            }
+
+                            .my-table th,
+                            .my-table td {
+                            text-align: center;
+                            padding: 2px;
+                            margin-top:10px;
+                            }
+
+                            </style>
+                            <!-- Contenido del informe -->
+
+                            <div class="row" style="margin-top:10px;margin-bottom:10px;">
+                                <div style="width:90%;">
+                                    <table class="my-table" style="font-weight:normal; width:100%;">
+                                        <tr>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;">NO.EMPL.</td>
+                                            <td style="width: 16.67%;">
+                                                <span t-field="o.codigo_empleado"/>
+                                            </td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;">NOMBRE</td>
+                                            <td colspan="3" style="width: 50%;">
+                                                <span t-field="o.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;">FECH. ING.</td>
+                                            <td style="width: 16.67%;">
+                                                <span t-field="o.fecha_ingreso"/>
+                                            </td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;">ÁREA</td>
+                                            <td style="width: 16.67%;">
+                                                <span t-field="o.area_trabajo"/>
+                                            </td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;">PUESTO</td>
+                                            <td style="width: 16.67%;">
+                                                <span t-field="o.job_id.name"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="width:10%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

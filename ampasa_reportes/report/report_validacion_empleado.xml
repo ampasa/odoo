@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_employee_report_validacion_empleado" model="ir.actions.report">
+        <field name="name">Validación Información</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ampasa_reportes.report_validacion_empleado</field>
+        <field name="report_file">ampasa_reportes.report_validacion_empleado</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ampasa_reportes.report_ampasa_basic_paperformat"/>
+    </record>
+
+    <template id="report_validacion_empleado">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="oe_structure" style="text-align: justify;text-align:center;">
+
+                        <style>
+                            .texto-titulo {
+                            text-align: center;
+                            background-color:#D8EBFF;
+                            width:auto;
+                            margin-lefT:0px;
+                            margin-right:0px;
+                            margin-bottom:0px;
+                            }
+                            .row{
+                                margin-top:10px;
+                                margin-bottom:10px;
+                            }
+
+                            .div1{
+                                width:40%;
+                                text-align:center;
+                                padding:3px;
+                                font-weight:bold;
+                            }
+                            .div2{
+                                width:50%;
+                                text-align:center;
+                                border-bottom:1px solid black;
+                                padding:3px;
+                            }
+
+                        </style>
+
+
+                        <div class="texto-titulo" style="border-top:2px solid black;border-left:2px solid black; border-right:2px solid black;">
+                        ABASTECEDORA DE MATERIAS PRIMAS AGROINDUSTRIAL SA DE CV
+                        </div>
+
+                        <!-- Contenido del informe -->
+
+                        <div class="container" style="border:2px solid black;margin-top:0px;">
+
+                            <div class="row">
+                                <div style="width:10%;align:center;padding-left:70px;">
+                                    <img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading" width="100" height="70" style="margin: 0 auto;position:absolute;"/>
+                                </div>
+                                <div style="width:90%;text-align:left;padding-left:250px;font-weight:bold;">INFORMACIÓN DEL EMPLEADO</div>
+                            </div>
+
+                            <br/>
+
+                            <div class="row">
+                                <div style="width:25%;">REG.RELOJ</div>
+                                <div style="width:25%;"></div>
+                                <div style="width:25%;">CODIGO COL.</div>
+                                <div style="width:25%;"><span t-field="o.codigo_empleado"/></div>
+                            </div>
+
+                            <div class="row">
+                                <div style="width:25%;">FECHA DE INGRESO:</div>
+                                <div style="width:25%;">
+                                    <span t-field="o.fecha_ingreso"/>
+                                </div>
+                                <div style="width:25%;">PUESTO:</div>
+                                <div style="width:25%;">
+                                    <span t-field="o.job_id.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div style="width:50%;">DEPARTAMENTO:</div>
+                                <div style="width:50%;">
+                                    <span t-field="o.department_id.name"/>
+                                </div>
+                            </div>
+
+
+
+                            <br/>
+
+                            <t t-set="nombres" t-value="o.name.split()"/>
+                            <t t-set="apellido_paterno" t-value="nombres[0] if len(nombres) >= 1 else ''"/>
+                            <t t-set="apellido_materno" t-value="nombres[1] if len(nombres) >= 2 else ''"/>
+                            <t t-set="nombres_completos" t-value="nombres[2:] if len(nombres) >= 3 else []"/>
+
+
+
+                            <div class="row">
+                                <div class="div1">APELLIDO PATERNO:</div>
+                                <div class="div2">
+                                    <span t-esc="apellido_paterno"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">APELLIDO MATERNO:</div>
+                                <div class="div2">
+                                    <span t-esc="apellido_materno"/>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">NOMBRE:</div>
+                                <div class="div2">
+                                    <span t-esc="str(nombres_completos).replace('[', '').replace(']', '').replace(',', '').replace(&quot;'&quot;, &quot;&quot;)" t-if="nombres_completos"/>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">FECHA DE NACIMIENTO:</div>
+                                <div class="div2">
+                                    <span t-field="o.birthday"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">NSS:</div>
+                                <div class="div2">
+                                    <span t-field="o.numero_ss"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">CURP:</div>
+                                <div class="div2">
+                                    <span t-field="o.curp"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">TELEFONO:</div>
+                                <div class="div2">
+                                    <span t-field="o.mobile_phone"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">NACIONALIDAD:</div>
+                                <div class="div2">
+                                    <span t-if="o.country_id.code == 'MX'">Mexicana</span>
+                                    <span t-else="o.country_id.name" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">LUGAR DE NACIMIENTO:</div>
+                                <div class="div2">
+                                    <span t-field="o.place_of_birth"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">SEXO:</div>
+                                <div class="div2">
+                                    <span t-field="o.gender"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">DOMICILIO:</div>
+                                <div class="div2">
+                                    <span t-field="o.city"/>
+                                    <span t-field="o.state_id.name"/>
+                                    <span t-field="o.city"/>
+                                    <span t-field="o.street"/>
+                                    <span t-field="o.street2"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">JORNADA LABORAL:</div>
+                                <div class="div2">
+                                    <span t-field="o.turno_empleados"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">SINDICALIZADO:</div>
+                                <div class="div2">
+                                    <span t-esc="o.sindicalizado and 'Sí' or 'No'"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">CORREO ELECTRÓNICO:</div>
+                                <div class="div2">
+                                    <span t-field="o.work_email"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">BENEFICIARIO:</div>
+                                <div class="div2">
+                                    <span t-field="o.nombre_beneficiario"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">SUELDO DIARIO:</div>
+                                <div class="div2"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">INFONAVIT:</div>
+                                <div class="div2"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="div1">AVISO DE RETENCIÓN:</div>
+                                <div class="div2"></div>
+                            </div>
+
+                            <br/>
+
+                                HE LEIDO Y ACEPTO QUE LA INFORMACION QUE PROPORCIONE ES VERDADERA PARA USO DE LA EMPRESA<br/>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div class="row">
+                            <div style="width:25%;"></div>
+                            <div style="width:50%;border-top:1px solid black;">GARCIA RESENDIS ABEL</div>
+                            <div style="width:25%;"></div>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</odoo>

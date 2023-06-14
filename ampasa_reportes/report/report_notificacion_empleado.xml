@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_ampasa_notificacion_paperformat" model="report.paperformat">
+        <field name="name">Basic Report Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">216</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="hr_employee_report_notificacion_empleado" model="ir.actions.report">
+        <field name="name">Notificación</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ampasa_reportes.report_notificacion_empleado</field>
+        <field name="report_file">ampasa_reportes.report_notificacion_empleado</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="ampasa_reportes.report_ampasa_notificacion_paperformat"/>
+    </record>
+
+    <template id="report_notificacion_empleado">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="oe_structure" style="font-size:14px;">
+                        <div class="container">
+                            <!-- Contenido del informe -->
+                            <div class="container row">
+                                <div style="width:25%;align:center;padding-left:45;">
+                                    <img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading" width="150" height="125" style="margin: 0 auto;"/>
+                                </div>
+
+                                <div style="width:50%;text-align: center;justify-content:center;padding-top:40px;padding-left:15px;">
+                                NOTIFICACIÓN DE PERSONAL DE NUEVO INGRESO
+                                </div>
+
+                                <div style="width:25%;text-align:right;">
+                                ABASTECEDORA DE MATERIAS
+                                PRIMAS AGROINDUSTRIAL
+                                SA DE CV
+                                </div>
+
+                            </div>
+
+                            <br/>
+
+                            <div style="text-align:center;">Me dirijo a ustedes por medio de la presente con el honor de presentarles a un nuevo miembro de esta empresa</div>
+
+                            <br/>
+
+                            <div style="text-align:center;">Datos generales del personal de nuevo ingreso</div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div style="width:25%;">
+                                FECHA DE INGRESO:
+                                    </div>
+
+                                    <div style="width:35%;text-align: center;border-bottom:1px solid black;">
+                                        <span t-field="o.fecha_ingreso"/>
+                                    </div>
+
+                                    <div style="width:10%;text-align:center;">
+                                DPTO:
+                                    </div>
+
+                                    <div style="width:30%;text-align:center;border-bottom:1px solid black;">
+                                        <span t-field="o.department_id.name"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div style="width:25%;">
+                                NOMBRE DEL EMPLEADO:
+                                    </div>
+
+                                    <div style="width:75%;text-align: center;border-bottom:1px solid black;">
+                                        <span t-field="o.name"/>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div style="width:10%;">
+                                TURNO:
+                                    </div>
+
+                                    <div style="width:30%;text-align: center;border-bottom:1px solid black;">
+                                        <span t-field="o.turno_empleados"/>
+                                    </div>
+
+                                    <div style="width:15%;text-align:center;">
+                                PUESTO:
+                                    </div>
+
+                                    <div style="width:45%;text-align: center;border-bottom:1px solid black;">
+                                        <span t-field="o.job_id.name"/>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <br/>
+                            <br/>
+
+                            <center>PUNTOS A CONSIDERAR</center>
+                            <br/>
+                            1.- FAVOR DE INTEGRAR AL COMPAÑERO EN LA LISTA DE ASISTENCIA<br/>
+                            2.- NOTIFICAR POR MEDIO DE UN CORREO LA INCORPORACION DEL PERSONAL<br/>
+                            3.- SE REQUIERE QUE LA PRESENTE NOTIFICACION A DE SER FIRMADA Y REGRESADA PARA CONSIDERAR AL<br/>
+                            COMPAÑERO DENTRO DE LA PRENOMINA<br/>
+
+            <center>Sin otro particular, los saludamos</center>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div style="width:25%;"></div>
+                <div style="width:50%;border-top:1px solid black;text-align:center;">OMAR SERRATO SOLIS<br/>
+JEFE INMEDIATO</div>
+                <div style="width:25%;"></div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</t>
+</t>
+</template>
+</odoo>
