@@ -58,7 +58,9 @@
 
                             <div class="row">
                                 <div style="width:10%;align:center;padding-left:70px;">
-                                    <img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading" width="100" height="70" style="margin: 0 auto;position:absolute;"/>
+                                    <!--<img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading" width="100" height="70" style="margin: 0 auto;position:absolute;"/>-->
+                                    <img class="img" t-if="company_id.logo" t-att-src="'data:image/png;base64,' + company_id.logo" alt="Company Logo" width="100" height="70" style="margin: 0 auto; position: absolute;" />
+
                                 </div>
                                 <div style="width:90%;text-align:left;padding-left:250px;font-weight:bold;">INFORMACIÓN DEL EMPLEADO</div>
                             </div>
@@ -66,33 +68,29 @@
                             <br/>
 
                             <div class="row">
-                                <div style="width:25%;">REG.RELOJ</div>
+                                <div style="width:25%;"><strong>REG.RELOJ</strong></div>
                                 <div style="width:25%;"></div>
-                                <div style="width:25%;">CODIGO COL.</div>
+                                <div style="width:25%;"><strong>CODIGO COL.</strong></div>
                                 <div style="width:25%;"><span t-field="o.codigo_empleado"/></div>
                             </div>
 
                             <div class="row">
-                                <div style="width:25%;">FECHA DE INGRESO:</div>
+                                <div style="width:25%;"><strong>FECHA DE INGRESO:</strong></div>
                                 <div style="width:25%;">
                                     <span t-field="o.fecha_ingreso"/>
                                 </div>
-                                <div style="width:25%;">PUESTO:</div>
+                                <div style="width:25%;"><strong>PUESTO:</strong></div>
                                 <div style="width:25%;">
                                     <span t-field="o.job_id.name"/>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div style="width:50%;">DEPARTAMENTO:</div>
+                                <div style="width:50%;"><strong>DEPARTAMENTO:</strong></div>
                                 <div style="width:50%;">
                                     <span t-field="o.department_id.name"/>
                                 </div>
                             </div>
-
-
-
-                            <br/>
 
                             <t t-set="nombres" t-value="o.name.split()"/>
                             <t t-set="apellido_paterno" t-value="nombres[0] if len(nombres) >= 1 else ''"/>
@@ -175,7 +173,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="div1">DOMICILIO:</div>
+                                <div class="div1" style="font-size:14px;">DOMICILIO:</div>
                                 <div class="div2">
                                     <span t-field="o.city"/>
                                     <span t-field="o.state_id.name"/>
@@ -232,7 +230,6 @@
 
                                 HE LEIDO Y ACEPTO QUE LA INFORMACION QUE PROPORCIONE ES VERDADERA PARA USO DE LA EMPRESA<br/>
 
-                        <br/>
                         <br/>
                         <br/>
 

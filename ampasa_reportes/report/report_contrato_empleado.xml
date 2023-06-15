@@ -41,10 +41,7 @@
                             
                         <center>
                             <strong>CONTRATO DE TRABAJO POR TIEMPO DETERMINADO</strong>
-                        </center>
-
-                        <br/>
-                            
+                        </center>                            
 
                         En Nuevo Laredo Tamaulipas , el día <span t-esc="datetime.datetime.now().strftime('%d de %B de %Y')" /> comparece por una parte el apoderado Abastecedora de
                         Materias Primas Agroindustrial S.A. de C.V. El C.P.Ricardo Garcia Lozano, mexicano , con domicilio social en calle El
@@ -58,7 +55,7 @@
 
                         <br/>
 
-                        <center><strong>CLAUSULAS:</strong></center><br/>
+                        <center><strong>CLAUSULAS:</strong></center>
 
                         PRIMERA.- El trabajador se obliga a presentar bajo la dirección dependencia del patrón sus servicios personales consistentes
                         en cubrir la vacante de: <span t-field="o.job_id.name"/> que desempeñara para la empresa: Abastecedora de Materias
