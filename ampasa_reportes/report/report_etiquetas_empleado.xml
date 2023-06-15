@@ -45,25 +45,25 @@
                                 <div style="width:90%;">
                                     <table class="my-table" style="font-weight:normal; width:100%;">
                                         <tr>
-                                            <td style="background-color:#C9C9C9; width: 16.67%;">NO.EMPL.</td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;"><strong>NO.EMPL.</strong></td>
                                             <td style="width: 16.67%;">
                                                 <span t-field="o.codigo_empleado"/>
                                             </td>
-                                            <td style="background-color:#C9C9C9; width: 16.67%;">NOMBRE</td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;"><strong>NOMBRE</strong></td>
                                             <td colspan="3" style="width: 50%;">
                                                 <span t-field="o.name"/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color:#C9C9C9; width: 16.67%;">FECH. ING.</td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;"><strong>FECH. ING.</strong></td>
                                             <td style="width: 16.67%;">
                                                 <span t-field="o.fecha_ingreso"/>
                                             </td>
-                                            <td style="background-color:#C9C9C9; width: 16.67%;">ÁREA</td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;"><strong>ÁREA</strong></td>
                                             <td style="width: 16.67%;">
                                                 <span t-field="o.area_trabajo"/>
                                             </td>
-                                            <td style="background-color:#C9C9C9; width: 16.67%;">PUESTO</td>
+                                            <td style="background-color:#C9C9C9; width: 16.67%;"><strong>PUESTO</strong></td>
                                             <td style="width: 16.67%;">
                                                 <span t-field="o.job_id.name"/>
                                             </td>
