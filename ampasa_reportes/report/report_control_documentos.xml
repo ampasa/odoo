@@ -415,7 +415,7 @@
                                     _________________________________________________________
                                     </div>
                                     <div style="width:30%;text-align:center;">
-                                        <img class="img" src='/ampasa_reportes/static/src/img/ampasa.jpg' alt="Image not loading"/>
+                                        <img class="img" t-if="o.company_id.logo" t-att-src="'data:image/png;base64,' + o.company_id.logo.decode('utf-8')" alt="Company Logo"/>
                                     </div>
                                 </div>
 
