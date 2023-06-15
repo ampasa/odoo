@@ -36,7 +36,7 @@
 
                 
             
-                    <div class="oe_structure" style="text-align:justify;">
+                    <div class="oe_structure" style="text-align:justify;font-size:14px;">
                             <!-- Contenido del informe -->
                             
                         <center>
@@ -53,9 +53,9 @@
                         TRABAJADOR , por nuestros propios derechos hacemos constar que hemos celebrado un contrato de trabajo al tenor de
                         las siguientes: 
 
-                        <br/>
+                        <br/><br/>
 
-                        <center><strong>CLAUSULAS:</strong></center>
+                        <center><strong>CLAUSULAS:</strong></center> <br/>
 
                         PRIMERA.- El trabajador se obliga a presentar bajo la dirección dependencia del patrón sus servicios personales consistentes
                         en cubrir la vacante de: <span t-field="o.job_id.name"/> que desempeñara para la empresa: Abastecedora de Materias
