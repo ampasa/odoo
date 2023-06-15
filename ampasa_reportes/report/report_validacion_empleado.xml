@@ -16,7 +16,7 @@
         <t t-foreach="docs" t-as="o">
             <t t-call="web.basic_layout">
                 <div class="page">
-                    <div class="oe_structure" style="text-align: justify;text-align:center;">
+                    <div class="oe_structure" style="text-align: justify;text-align:center;font-size:15px;">
 
                         <style>
                             .texto-titulo {
@@ -173,7 +173,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="div1" style="font-size:14px;">DOMICILIO:</div>
+                                <div class="div1">DOMICILIO:</div>
                                 <div class="div2">
                                     <span t-field="o.city"/>
                                     <span t-field="o.state_id.name"/>
@@ -225,8 +225,6 @@
                                 <div class="div1">AVISO DE RETENCIÓN:</div>
                                 <div class="div2"></div>
                             </div>
-
-                            <br/>
 
                                 HE LEIDO Y ACEPTO QUE LA INFORMACION QUE PROPORCIONE ES VERDADERA PARA USO DE LA EMPRESA<br/>
 
