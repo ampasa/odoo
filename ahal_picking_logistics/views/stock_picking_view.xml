@@ -15,9 +15,9 @@
 
             <xpath expr="//field[@name='origin']" position="after">
                     <field name="calculo_cargo"/>
-                    <field name="mph_ampasa"/>
+                    <field name="mph_ampasa" invisible="1"/>
                     <field name="invoice_ampasa"/>
-                    <field name="caja_mexicana"/>
+                    <field name="caja_mexicana" invisible="1"/>
             </xpath>
 
             <xpath expr="//notebook" position="inside">
