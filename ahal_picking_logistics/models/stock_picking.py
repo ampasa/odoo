@@ -151,8 +151,18 @@ class PlantAmpasa(models.Model):
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
 
-    kd_cargo = fields.Date(string="Killing date")
-    flete_id = fields.Many2one('flete.rel',string="Flete")
+    @api.model
+    def get_kd_cargo(self):
+        picking_id = self.env['stock.picking'].search([('id','=',self._context.get('default_picking_id'))])
+        return picking_id.kd_cargo
+
+    @api.model
+    def get_flete_id(self):
+        picking_id = self.env['stock.picking'].search([('id','=',self._context.get('default_picking_id'))])
+        return picking_id.flete_id
+    
+    kd_cargo = fields.Date(string="Killing date",default=lambda self: self.get_kd_cargo())
+    flete_id = fields.Many2one('flete.rel',string="Flete",default=lambda self: self.get_flete_id())
     fecha_entrada = fields.Date(string="Fecha entrada", default=fields.Date.today)
     qty_done_pass = fields.Float(string="Cantidad hecha USA", related="picking_id.net_weigth_usa_cargo")
     #lot_id_value = fields.Many2one('stock.production.lot', string="Lot/SNumber")
