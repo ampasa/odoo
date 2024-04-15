@@ -31,6 +31,7 @@ class StockPicking(models.Model):
                    ('s_border_warehouse', 'S. Border Warehouse'),
                    ('mbg_trading', 'MBG Trading'),
                    ('koch_foods', 'Koch Foods'),
+                   ('house_raeford', 'HOUSE OF RAEFORD'),
                    ],
         string=('Brokers'),
     )
