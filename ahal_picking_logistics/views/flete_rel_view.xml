@@ -5,7 +5,7 @@
         <field name="model">flete.rel</field>
         <field name="arch" type="xml">
             <form string="" >
-             <header>
+                <header>
                     <field name="flete_status" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -14,42 +14,45 @@
                             <field name="name" placeholder="Nombre del flete" required="True"/>
                         </h1>
                     </div>
-                    <group cols="4">
                     <group>
-                        <field name="flete_partner"/>
-                        <field name="flete_id"/>
-                        <field name="flete_date_con"/>
-                        <field name="flete_date_disp"/>
-                        <field name="flete_asigna"/>
-                        <field name="flete_car_id"/>
-                        <field name="flete_label" widget="many2many_tags"/>
-                        <field name="flete_place_out"/>
-                        <field name="flete_date_out"/>
-                        <field name="flete_obs"/>
-                        <field name="picking_id"/>
-                        <field name="lot_number"/>
-                        <field name="temperature"/>
-                        <field name="contiene"/>
-                        <field name="disponible_patio"/>
-                        <field name="no_disponible" attrs="{'invisible':[('contiene','not in',('archivo_muerto','basura','carcasa','combos','equipo_fu','falla_mecanica','herramientas_varias','hielo','material_empaque','pasta','producto_pendiente','sal',))]}"/>
-                        <field name="restart_state" attrs="{'invisible':[('flete_status','=','disponible')]}"/>
+                        <group>
+                            <field name="flete_partner"/>
+                            <field name="flete_id"/>
+                            <field name="flete_date_con"/>
+                            <field name="flete_date_disp"/>
+                            <field name="flete_asigna"/>
+                            <field name="flete_car_id"/>
+                            <field name="flete_label" widget="many2many_tags"/>
+                            <field name="flete_place_out"/>
+                            <field name="flete_date_out"/>
+                            <field name="flete_obs"/>
+                            <field name="picking_id"/>
+                            <field name="lot_number"/>
+                            <field name="temperature"/>
+                            <field name="contiene"/>
+                            <field name="disponible_patio"/>
+                            <field name="no_disponible" invisible="'contiene','not in',['archivo_muerto','basura','carcasa','combos','equipo_fu','falla_mecanica','herramientas_varias','hielo','material_empaque','pasta','producto_pendiente','sal']"/>
+                            <field name="restart_state" invisible="'flete_status','=','disponible'"/>
+                        </group>
                     </group>
-                </group>
                 </sheet>
-                <div class="oe_chatter">
+                <div class="o_attachment_preview o_center_attachment"/>
+                <chatter/>
+                <!-- <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
                     <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
-                </div>
+                </div> -->
             </form>
         </field>
     </record>
+
     <record id="view_flete_rel_tree" model="ir.ui.view">
-        <field name="name">flete.rel.tree</field>
+        <field name="name">flete.rel.list</field>
         <field name="priority" eval="10"/>
         <field name="model">flete.rel</field>
         <field name="arch" type="xml">
-            <tree string="Fletes">
+            <list string="Fletes">
                 <field name="name"/>
                 <field name="flete_partner"/>
                 <field name="flete_status"/>
@@ -57,7 +60,7 @@
                 <field name="flete_date_disp"/>
                 <field name="contiene"/>
                 <field name="flete_label"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_flete_rel_search" model="ir.ui.view">
@@ -77,9 +80,9 @@
     <record id="action_flete_rel_tree" model="ir.actions.act_window">
         <field name="name">Flete</field>
         <field name="res_model">flete.rel</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
-          <p class="oe_view_nocontent_create">
+          <p class="o_view_nocontent_smiling_face">
             Clic para crear un Flete.
           </p>
         </field>
@@ -101,10 +104,4 @@
               action="action_flete_rel_tree"
               sequence="10"/>
 
-
-
-
-
-
 </odoo>
-

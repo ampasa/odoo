@@ -6,9 +6,9 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_id']" position="after">
+            <div name="bom_div" position="after">
                 <field name="performance"></field>                
-            </xpath>
+            </div>
         </field>
     </record>
 

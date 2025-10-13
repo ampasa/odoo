@@ -18,8 +18,8 @@
     <field name="model">quality.check</field>
     <field name="inherit_id" ref="quality_control.quality_check_view_tree"/>
     <field name="arch" type="xml">
-      <xpath expr="//tree" position="replace">
-        <tree default_order="id desc" sample="1" decoration-info="quality_state == 'none'">
+      <xpath expr="//list" position="replace">
+        <list default_order="id desc" sample="1" decoration-info="quality_state == 'none'">
                 <field name="name" decoration-bf="1" string="Folio"/>
                 <field name="purchase_id" />
                 <field name="rejected_date" />
@@ -39,7 +39,7 @@
                 <field name="quality_state" optional="show" widget="badge" decoration-success="quality_state == 'pass'" decoration-info="quality_state == 'none'" decoration-danger="quality_state == 'fail'"/>
                 <field name="rejected_status_id" />
                 <!-- <field name="company_id" groups="base.main_company" optional="show" /> -->
-            </tree>
+        </list>
          
       </xpath>
     </field>

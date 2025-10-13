@@ -1,2 +1,1 @@
 # ahal_picking_logistics
-Modulo ahal_picking_logistics

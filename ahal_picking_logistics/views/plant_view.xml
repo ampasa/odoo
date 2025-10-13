@@ -16,12 +16,12 @@
         </field>
     </record>
     <record id="view_plant_ampasa_tree" model="ir.ui.view">
-        <field name="name">plant.ampasa.tree</field>
+        <field name="name">plant.ampasa.list</field>
         <field name="model">plant.ampasa</field>
         <field name="arch" type="xml">
-            <tree string="Planta">
+            <list string="Planta">
                 <field name="name"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_plant_ampasa_search" model="ir.ui.view">
@@ -37,7 +37,7 @@
     <record id="action_plant_ampasa_tree" model="ir.actions.act_window">
         <field name="name">Plantas Ampasa</field>
         <field name="res_model">plant.ampasa</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Clic para crear una Planta.
@@ -53,4 +53,3 @@
 
 
 </odoo>
-

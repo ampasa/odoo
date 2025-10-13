@@ -82,10 +82,10 @@
                                 <field name="leer_escribir"/>
                                 <field name="observaciones"/>
                             </group>
-                            <group string="Historial de Bajas" attrs="{'invisible': [('baja_ids', '=', False)]}">
+                            <group string="Historial de Bajas" invisible="'baja_ids', '=', False">
                                 <field name="baja_ids" nolabel="1">
                                     <tree editable="bottom">
-                                        <field name="notas"/>
+                                        <!-- <field name="notas"/> -->
                                         <field name="fecha_baja"/>
                                         <field name="semana_baja"/>
                                     </tree>

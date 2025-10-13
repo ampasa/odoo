@@ -10,13 +10,13 @@
         <attribute name="string">Cantidad rechazada</attribute>
       </xpath>
 
-      <xpath expr="//field[@name='lot_name']" position="after">
+      <field name="additional_note" position="before">
         <field name="partner_id" string="Proveedor"/>     
         <field name="purchase_id" options="{'no_open':True, 'no_create':True}"/>
         <field name="rejected_date" required="1"/>
         <field name="rejected_reason_id" options="{'no_open':True, 'no_create':True}" required="1"/>          
         <field name="rejected_status_id" options="{'no_open':True, 'no_create':True}" required="1"/>          
-      </xpath>    
+      </field>    
     
     </field>
   </record>

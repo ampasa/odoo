@@ -23,7 +23,7 @@
         'views/logistics_report_tree_view.xml',
         'views/stock_quant_view.xml',
         'views/mrp_detailed_operations.xml',
-        'views/stock_production_lot.xml',
+        'views/stock_lot.xml',
         'views/flete_patio_report.xml'
     ],
     'images': [],

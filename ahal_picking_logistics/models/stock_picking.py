@@ -54,7 +54,7 @@ class StockPicking(models.Model):
     cost_cargo = fields.Float(string="COST", compute="get_cost")
     obs_cargo = fields.Text(string="OBSERVATIONS")
 
-    flete_id = fields.Many2one('flete.rel',string="Flete", track_visibility='always')
+    flete_id = fields.Many2one('flete.rel',string="Flete", tracking=True)
 
     #CREATE FUNCTION TO GET THE FLETE STATUS DINAMICALLY
     #BUSCA LOS REGISTROS DONDE ESTE SELECCIONADO EL FLETE

@@ -3,6 +3,7 @@ from odoo import models
 
 class QualityCheckXlsxReport(models.AbstractModel):
     _name = 'report.ampasa_quality_custom.quality_check_xlsx_report'
+    _description = " "
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, recs):              

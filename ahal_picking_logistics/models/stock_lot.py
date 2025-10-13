@@ -2,8 +2,8 @@
 
 from odoo import models, api, fields, _
 
-class StockProductionLot(models.Model):
-    _inherit = 'stock.production.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     kd_cargo = fields.Date(string="Killing date")
     flete_id = fields.Many2one('flete.rel',string="Flete")
