@@ -60,7 +60,7 @@ class FleteRel(models.Model):
                     ('disponible', 'Disponible'), 
                    ('viaje_mp', 'Viaje Materia Prima'),
                    ('viaje_pt', 'Viaje Producto Terminado')],
-        string=('Estatus de la unidad'),default="disponible", track_visibility='always'
+        string=('Estatus de la unidad'),default="disponible", tracking=True
     )
 
 
@@ -82,7 +82,7 @@ class FleteRel(models.Model):
             if rec.restart_state == True:
                 rec.flete_status = 'disponible'
 
-    picking_id = fields.Many2one('stock.picking', string="Picking", compute="get_picking", track_visibility='always')
+    picking_id = fields.Many2one('stock.picking', string="Picking", compute="get_picking", tracking=True, search=True)
 
     #SHOW THE PICKING ID IN THE MODEL FLETE
     def get_picking(self):

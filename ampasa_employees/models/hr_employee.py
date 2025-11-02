@@ -126,6 +126,7 @@ class HrEmployee(models.Model):
 
 class HrEmployeeBaja(models.Model):
     _name = 'hr.employee.baja'
+    _description = "Empleados de baja"
 
     notas = fields.Text(string='Notas de Bajas')
     fecha_baja = fields.Date(string='Fecha de Baja')
@@ -134,4 +135,6 @@ class HrEmployeeBaja(models.Model):
 
 class HrAreaTrabajo(models.Model):
     _name = 'hr.area.trabajo'
+    _description = "Area de trabajo"
+    
     name = fields.Char(string="Área de trabajo")

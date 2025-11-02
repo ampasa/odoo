@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo> 
-    <report
-        id="quality_check_xlsx_report_id"
-        model="quality.check"
-        string="Rechazos (XLSX)"
-        report_type="xlsx"
-        name="ampasa_quality_custom.quality_check_xlsx_report"
-        file="quality_check"
-        attachment_use="False" 
-    />   
+    <record id="quality_check_xlsx_report_id" model="ir.actions.report">
+        <field name="name">Rechazos (XLSX)</field>
+        <field name="model">quality.check</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">ampasa_quality_custom.quality_check_xlsx_report</field>
+        <field name="report_file">quality_check</field>
+        <field name="binding_model_id" ref="quality_control.model_quality_check"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Rechazos_%s' % (object.name or '')</field>
+    </record>  
 </odoo>

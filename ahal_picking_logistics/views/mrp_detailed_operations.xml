@@ -3,14 +3,14 @@
     <record id="ahal_picking_logistics_stock_move_line_do_list" model="ir.ui.view">
         <field name="name">stock.move.line.list.inherit</field>
         <field name="model">stock.move.line</field>
-        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="inherit_id" ref="stock.view_move_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='qty_done']" position="before">
+            <xpath expr="//field[@name='quantity']" position="before">
                 <!--<field name="picking_id"/>-->
-                <field name="kd_cargo"/>
-                <field name="flete_id"/>
-                <field name="fecha_entrada"/>
-                <field name="qty_done_pass"/>
+                <field name="kd_cargo" optional="show"/>
+                <field name="flete_id" optional="show"/>
+                <field name="fecha_entrada" optional="show"/>
+                <field name="qty_done_pass" optional="show"/>
                 <!--<field name="custom_field"/>-->
             </xpath>
             <!--<xpath expr="//field[@name='qty_done']" position="attributes">

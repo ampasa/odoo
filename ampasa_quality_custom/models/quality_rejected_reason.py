@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class QualityRejectedReason(models.Model):
     _name = 'quality.rejected.reason'
+    _description = " "
 
     name = fields.Char(string='Motivos de rechazo', required=True) 
     
